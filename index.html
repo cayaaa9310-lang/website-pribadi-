@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title>Nilam · Website Pribadi</title>
+  <!-- Google Font: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome 6 (gratis) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #faf8ff;
+      color: #2d2a3e;
+      line-height: 1.6;
+    }
+
+    /* ----- NAVBAR (8 menu) ----- */
+    .navbar {
+      background: #ffffff;
+      box-shadow: 0 4px 18px rgba(160, 120, 200, 0.08);
+      padding: 0.7rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      border-bottom: 2px solid #f0e6ff;
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 1.4rem;
+      color: #6b4c8a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .logo i {
+      color: #a77bc0;
+      font-size: 1.5rem;
+    }
+
+    .nav-menu {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.2rem 1rem;
+      list-style: none;
+      font-weight: 500;
+    }
+    .nav-menu li a {
+      text-decoration: none;
+      color: #3d3a4a;
+      padding: 0.4rem 0.1rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .nav-menu li a i {
+      color: #a77bc0;
+      font-size: 0.85rem;
+    }
+    .nav-menu li a:hover {
+      color: #6b4c8a;
+      border-bottom-color: #b99ad1;
+    }
+
+    /* kontainer utama */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.8rem 1.2rem;
+    }
+
+    /* ----- setiap section (untuk 8 menu) ----- */
+    .section {
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 2rem 1.8rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 6px 28px rgba(155, 115, 190, 0.06);
+      border: 1px solid #f3edfc;
+      transition: 0.2s;
+    }
+    .section-title {
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: #4b2d66;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title i {
+      color: #a77bc0;
+      font-size: 1.6rem;
+    }
+    .accent-line {
+      width: 50px;
+      height: 3px;
+      background: #d6c3eb;
+      border-radius: 8px;
+      margin-top: -0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ----- 1. BERANDA (foto, nama, kalimat) ----- */
+    .beranda-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+    .foto-profil {
+      flex: 0 0 160px;
+      text-align: center;
+    }
+    .foto-profil img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #e5d6f5;
+      background: #f4edfc;
+      box-shadow: 0 8px 20px rgba(150, 110, 190, 0.15);
+    }
+    .foto-profil .placeholder-text {
+      font-size: 0.7rem;
+      color: #8f79a8;
+      margin-top: 4px;
+      background: #f2ebfc;
+      padding: 2px 12px;
+      border-radius: 40px;
+      display: inline-block;
+    }
+    .beranda-teks {
+      flex: 1;
+    }
+    .beranda-teks h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: #3e2c52;
+    }
+    .beranda-teks h1 span {
+      color: #8f6aaf;
+    }
+    .beranda-teks .sapaan {
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: #5a4d6e;
+      margin: 0.2rem 0 0.2rem;
+    }
+    .beranda-teks .sapaan i {
+      color: #b28ad0;
+      margin-right: 6px;
+    }
+
+    /* ----- 2. TENTANG SAYA (biodata) ----- */
+    .biodata-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem 1.5rem;
+      background: #f9f4ff;
+      padding: 1.2rem 1.5rem;
+      border-radius: 28px;
+    }
+    .bio-item {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      font-weight: 400;
+    }
+    .bio-item i {
+      color: #a77bc0;
+      width: 22px;
+      font-size: 1rem;
+    }
+    .bio-item strong {
+      font-weight: 600;
+      color: #4b2d66;
+      margin-right: 4px;
+    }
+
+    /* ----- 3. CV (tabel) ----- */
+    .cv-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      background: #fcfaff;
+      border-radius: 24px;
+      overflow: hidden;
+    }
+    .cv-table th {
+      background: #efe6fc;
+      color: #3e2c52;
+      font-weight: 600;
+      padding: 12px 10px;
+      text-align: left;
+    }
+    .cv-table td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #ede4f7;
+    }
+    .cv-table tr:last-child td {
+      border-bottom: none;
+    }
+    .cv-table tr:hover {
+      background: #f8f2ff;
+    }
+
+    /* ----- 4. HASIL KARYA (grid) ----- */
+    .karya-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.2rem;
+    }
+    .karya-item {
+      background: #f8f2ff;
+      padding: 1rem 0.5rem;
+      border-radius: 20px;
+      text-align: center;
+      border: 1px solid #ede4f7;
+    }
+    .karya-item i {
+      font-size: 2.2rem;
+      color: #9b78bc;
+      margin-bottom: 6px;
+    }
+    .karya-item span {
+      display: block;
+      font-weight: 500;
+      color: #3e2c52;
+    }
+
+    /* ----- 5. GALERI (foto & video placeholder) ----- */
+    .galeri-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1.2rem;
+    }
+    .galeri-item {
+      background: #f4edfc;
+      border-radius: 20px;
+      padding: 1rem 0.5rem;
+      text-align: center;
+      border: 1px solid #e5d6f5;
+    }
+    .galeri-item img {
+      width: 100%;
+      max-height: 130px;
+      object-fit: cover;
+      border-radius: 16px;
+      background: #e5d6f5;
+    }
+    .galeri-item .placeholder-icon {
+      font-size: 2.8rem;
+      color: #b28ad0;
+      background: #e5d6f5;
+      width: 100%;
+      border-radius: 16px;
+      padding: 1.2rem 0;
+    }
+    .galeri-item .caption {
+      font-size: 0.75rem;
+      color: #5f4a78;
+      margin-top: 4px;
+    }
+    /* video placeholder */
+    .video-placeholder {
+      background: #dccbea;
+      border-radius: 16px;
+      padding: 1.4rem 0.5rem;
+      color: #4b2d66;
+      font-weight: 500;
+    }
+
+    /* ----- 6. MEDIA SOSIAL (link) ----- */
+    .sosmed-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+    }
+    .sosmed-wrap a {
+      background: #f4edfc;
+      padding: 0.6rem 1.5rem;
+      border-radius: 60px;
+      color: #3e2c52;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+      border: 1px solid #e5d6f5;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sosmed-wrap a i {
+      color: #9b78bc;
+      font-size: 1.2rem;
+    }
+    .sosmed-wrap a:hover {
+      background: #e9dbf7;
+      border-color: #b99ad1;
+    }
+
+    /* ----- 7. KONTAK (form) ----- */
+    .form-kontak {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 450px;
+    }
+    .form-kontak input, .form-kontak textarea {
+      padding: 12px 16px;
+      border-radius: 40px;
+      border: 1.5px solid #e5d6f5;
+      font-family: 'Poppins', sans-serif;
+      background: #fcfaff;
+      transition: 0.2s;
+    }
+    .form-kontak input:focus, .form-kontak textarea:focus {
+      outline: none;
+      border-color: #b28ad0;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(160, 120, 200, 0.1);
+    }
+    .form-kontak button {
+      background: #b28ad0;
+      border: none;
+      padding: 12px;
+      border-radius: 60px;
+      font-weight: 600;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      font-family: 'Poppins', sans-serif;
+    }
+    .form-kontak button:hover {
+      background: #9b78bc;
+      transform: scale(0.98);
+    }
+
+    /* ----- 8. TESTIMONI (3 box) ----- */
+    .testimoni-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .testimoni-box {
+      background: #f9f4ff;
+      padding: 1.2rem 1.2rem;
+      border-radius: 28px;
+      border: 1px solid #ede4f7;
+    }
+    .testimoni-box i {
+      color: #b28ad0;
+      font-size: 1.2rem;
+      opacity: 0.7;
+    }
+    .testimoni-box .isi {
+      font-style: italic;
+      margin: 0.4rem 0 0.6rem;
+      font-weight: 300;
+    }
+    .testimoni-box .nama {
+      font-weight: 600;
+      color: #4b2d66;
+    }
+
+    /* footer */
+    .footer {
+      background: #f8f2ff;
+      padding: 1.5rem 1.2rem;
+      text-align: center;
+      border-top: 1px solid #e6d9f5;
+      color: #4e3d63;
+      font-weight: 300;
+      font-size: 0.9rem;
+    }
+
+    /* responsive */
+    @media (max-width: 700px) {
+      .navbar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0.6rem 1rem;
+      }
+      .logo {
+        justify-content: center;
+        margin-bottom: 0.2rem;
+      }
+      .nav-menu {
+        justify-content: center;
+        gap: 0.2rem 0.7rem;
+      }
+      .nav-menu li a {
+        font-size: 0.75rem;
+      }
+      .nav-menu li a i {
+        font-size: 0.7rem;
+      }
+      .beranda-wrap {
+        flex-direction: column;
+        text-align: center;
+      }
+      .foto-profil {
+        flex: 0 0 auto;
+      }
+      .foto-profil img {
+        width: 130px;
+        height: 130px;
+      }
+      .beranda-teks h1 {
+        font-size: 2rem;
+      }
+      .section {
+        padding: 1.5rem 1rem;
+      }
+      .section-title {
+        font-size: 1.5rem;
+      }
+      .cv-table {
+        font-size: 0.8rem;
+      }
+      .cv-table th, .cv-table td {
+        padding: 8px 6px;
+      }
+      .sosmed-wrap a {
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+      }
+      .testimoni-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 480px) {
+      .nav-menu li a {
+        font-size: 0.7rem;
+        gap: 3px;
+      }
+      .beranda-teks h1 {
+        font-size: 1.6rem;
+      }
+      .container {
+        padding: 1rem 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR 8 MENU -->
+  <nav class="navbar">
+    <div class="logo">
+      <i class="fas fa-leaf"></i> Nilam
+    </div>
+    <ul class="nav-menu">
+      <li><a href="#beranda"><i class="fas fa-house"></i> Beranda</a></li>
+      <li><a href="#tentang"><i class="fas fa-user"></i> Tentang</a></li>
+      <li><a href="#cv"><i class="fas fa-table"></i> CV</a></li>
+      <li><a href="#karya"><i class="fas fa-paintbrush"></i> Hasil Karya</a></li>
+      <li><a href="#galeri"><i class="fas fa-images"></i> Galeri</a></li>
+      <li><a href="#sosmed"><i class="fas fa-share-alt"></i> Media Sosial</a></li>
+      <li><a href="#kontak"><i class="fas fa-envelope"></i> Kontak</a></li>
+      <li><a href="#testimoni"><i class="fas fa-comment"></i> Testimoni</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+
+    <!-- 1. BERANDA -->
+    <section id="beranda" class="section">
+      <div class="beranda-wrap">
+        <div class="foto-profil">
+          <img src="foto saya.jpg" alt="Foto profil Nilam" />
+          <div class="placeholder-text"><i class="fas fa-camera"></i> foto saya.jpg</div>
+        </div>
+        <div class="beranda-teks">
+          <h1>Halo, nama saya <span>Nilam</span></h1>
+          <p class="sapaan"><i class="fas fa-graduation-cap"></i> saya siswi SMK</p>
+          <p style="font-weight: 300; color: #5a4d6e; margin-top: 0.3rem;">
+            <i class="fas fa-quote-left" style="color:#b28ad0; opacity:0.6;"></i> 
+            senang berkreasi dan belajar hal baru
+          </p>
+          <div style="margin-top: 0.4rem;">
+            <span style="background: #efe6fc; padding: 0.2rem 1.2rem; border-radius: 40px; font-size:0.8rem; color:#4b2d66;">
+              <i class="fas fa-star" style="color:#b28ad0;"></i> #ndc
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. TENTANG SAYA (biodata) -->
+    <section id="tentang" class="section">
+      <div class="section-title"><i class="fas fa-address-card"></i> Tentang Saya</div>
+      <div class="accent-line"></div>
+      <div class="biodata-grid">
+        <div class="bio-item"><i class="fas fa-user"></i> <strong>Nama:</strong> Nilam</div>
+        <div class="bio-item"><i class="fas fa-school"></i> <strong>Sekolah:</strong> SMK Negeri 42 Jakarta</div>
+        <div class="bio-item"><i class="fas fa-heart"></i> <strong>Hobi:</strong> Desain, membaca, kulineran </div>
+        <div class="bio-item"><i class="fas fa-rocket"></i> <strong>Cita-cita:</strong> UI/UX Pengusaha</div>
+      </div>
+      <p style="margin-top: 0.8rem; font-weight: 300; color: #5a4d6e;">
+        <i class="fas fa-quote-right" style="color:#b28ad0;"></i> 
+        Saya percaya bahwa setiap detail kecil bisa membuat karya lebih bermakna.
+      </p>
+    </section>
+
+    <!-- 3. CV (tabel riwayat pendidikan & organisasi) -->
+    <section id="cv" class="section">
+      <div class="section-title"><i class="fas fa-table"></i> CV / Riwayat</div>
+      <div class="accent-line"></div>
+      <table class="cv-table">
+        <thead><tr><th>Pendidikan</th><th>Tahun</th><th>Keterangan</th></tr></thead>
+        <tbody>
+          <tr><td>SDN Kapuk 11 Pagi </td><td>2017-2023</td><td>Lulus</td></tr>
+          <tr><td>SMP DARROSTA </td><td>2023-2026</td><td>Lulus</td></tr>
+          <tr><td>SMK Negeri 42 Jakarta </td><td>2026-sekarang</td><td>Jurusan Manajemen Perkantoran</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top: 1.2rem;">
+        <table class="cv-table">
+          <thead><tr><th>Organisasi</th><th>Jabatan</th><th>Tahun</th></tr></thead>
+          <tbody>
+            <tr><td>OSIS SMP</td><td>Wakil Ketua Osis</td><td>2024-2025</td></tr>
+            <tr><td>TARI</td><td>Anggota</td><td>2025</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 4. HASIL KARYA -->
+    <section id="karya" class="section">
+      <div class="section-title"><i class="fas fa-paintbrush"></i> Hasil Karya</div>
+      <div class="accent-line"></div>
+      <div class="karya-grid">
+        <div class="karya-item"><i class="fas fa-palette"></i><span>foto poster.jpg</span></div>
+        <div class="karya-item"><i class="fas fa-mobile-alt"></i><span>UI Mockup Aplikasi</span></div>
+        <div class="karya-item"><i class="fas fa-camera"></i><span>Foto Produk</span></div>
+        <div class="karya-item"><i class="fas fa-code"></i><span>Landing Page</span></div>
+      </div>
+    </section>
+
+    <!-- 5. GALERI (foto & video placeholder) -->
+    <section id="galeri" class="section">
+      <div class="section-title"><i class="fas fa-images"></i> Galeri</div>
+      <div class="accent-line"></div>
+      <div class="galeri-grid">
+        <div class="galeri-item">
+          <img src="foto saya.jpg" alt="Galeri foto 1" />
+          <div class="caption"><i class="fas fa-image"></i> anggota organisasi</div>
+        </div>
+        <div class="galeri-item">
+          <img src="foto saya.jpg" alt="Galeri foto 2" />
+          <div class="caption"><i class="fas fa-image"></i> anggota ekstrakurikuler tari</div>
+        </div>
+        <div class="galeri-item">
+          <img src="foto saya.jpg" alt="Galeri foto 3" />
+          <div class="caption"><i class="fas fa-image"></i> foto saya</div>
+        </div>
+      </div>
+      <p style="margin-top: 0.8rem; font-size:0.8rem; color:#7d649a;"><i class="fas fa-info-circle"></i> Gambar & video menggunakan placeholder.</p>
+    </section>
+
+    <!-- 6. MEDIA SOSIAL -->
+    <section id="sosmed" class="section">
+      <div class="section-title"><i class="fas fa-share-alt"></i> Media Sosial</div>
+      <div class="accent-line"></div>
+      <div class="sosmed-wrap">
+        <a href="#"><i class="fab fa-instagram"></i> @cw0on.ilam</a>
+        <a href="#"><i class="fab fa-linkedin"></i> Nilam Cahya</a>
+      </div>
+    </section>
+
+    <!-- 7. KONTAK (form nama, email) -->
+    <section id="kontak" class="section">
+      <div class="section-title"><i class="fas fa-envelope"></i> Kontak</div>
+      <div class="accent-line"></div>
+      <form class="form-kontak">
+        <input type="text" placeholder="Nilam Dwi Cahya" required />
+        <input type="email" placeholder="ndcayaaaie_10" required />
+        <textarea rows="3" placeholder="Terima kasih sudah berkunjung ke website saya. Mari terhubung dan berdiskusi bersama."></textarea>
+        <button type="submit"><i class="fas fa-paper-plane"></i> Kirim</button>
+      </form>
+    </section>
+
+    <!-- 8. TESTIMONI (3 box) -->
+    <section id="testimoni" class="section">
+      <div class="section-title"><i class="fas fa-comment"></i> Testimoni</div>
+      <div class="accent-line"></div>
+      <div class="testimoni-grid">
+        <div class="testimoni-box">
+          <i class="fas fa-quote-left"></i>
+          <div class="isi">“Nilam siswa yang kreatif dan selalu bersemangat. Karya desainnya rapi dan penuh ide.”</div>
+          <div class="nama">— Bu Mei, Guru Sejarah</div>
+        </div>
+        <div class="testimoni-box">
+          <i class="fas fa-quote-left"></i>
+          <div class="isi">“Kerjasama dengan Nilam sangat menyenangkan. Dia cepat tanggap dan bertanggung jawab.”</div>
+          <div class="nama">— Mutia, Teman sekelas</div>
+        </div>
+        <div class="testimoni-box">
+          <i class="fas fa-quote-left"></i>
+          <div class="isi">“Nilam punya gaya visual yang khas. Saya suka bagaimana dia memadukan warna ungu.”</div>
+          <div class="nama">— Mrs. Ayu, Guru Bahasa Inggris</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p><i class="fas fa-crown" style="color:#b28ad0;"></i> dibuat dengan <i class="fas fa-heart" style="color:#b28ad0;"></i> oleh Nilam · tema ungu muda & putih</p>
+    <p style="font-size:0.75rem; opacity:0.7;">Poppins · responsive · 8 menu</p>
+  </footer>
+
+</body>
+</html>
